@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LinguaCity — Real City</title>
+<title>AmeriStart</title>
 <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -78,38 +78,32 @@ canvas { display: block; width: 100vw; height: 100vh; }
   transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), opacity 0.3s;
   z-index: 50;
 }
-.district-label:hover { transform: translate(-50%, -50%) scale(1.08); }
-.label-inner {
-  background: rgba(10,14,26,0.85);
-  backdrop-filter: blur(16px);
-  border-radius: 14px; padding: 10px 18px;
-  border: 1px solid rgba(255,255,255,0.12);
-  display: flex; align-items: center; gap: 10px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  white-space: nowrap;
+.district-label:hover { transform: translate(-50%,-50%) scale(1.07); }
+.label-inner { display:flex; flex-direction:column; align-items:center; gap:0; white-space:nowrap; position:relative; }
+.label-card {
+  background: var(--lc, rgba(59,130,246,0.88));
+  border-radius: 14px; padding: 9px 16px 9px 12px;
+  display: flex; align-items: center; gap: 9px;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,0.18) inset;
+  border: 1px solid rgba(255,255,255,0.18);
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+  backdrop-filter: blur(12px);
 }
-.district-label:hover .label-inner {
-  border-color: rgba(255,255,255,0.3);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+.label-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
 }
-.label-icon { font-size: 22px; }
-.label-text { }
-.label-name {
-  font-size: 13px; font-weight: 800; color: #fff;
-  letter-spacing: 0.02em; display: block;
-}
-.label-missions {
-  font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5);
-  display: block; margin-top: 1px;
-}
-.label-lock {
-  font-size: 13px; opacity: 0.6; margin-left: 2px;
-}
-.label-dot {
-  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
-}
-.dot-unlocked { background: #10b981; box-shadow: 0 0 8px #10b981; }
-.dot-locked { background: #6b7280; }
+.district-label:hover .label-card { box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: translateY(-2px); }
+.label-icon-wrap { width:32px; height:32px; border-radius:50%; background:rgba(255,255,255,0.2); display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+.label-text-wrap { display:flex; flex-direction:column; gap:3px; }
+.label-name { font-family:'Fredoka One',cursive; font-size:14px; color:#fff; letter-spacing:0.01em; display:block; line-height:1.1; text-shadow:0 1px 6px rgba(0,0,0,0.3); }
+.label-missions { font-size:10px; font-weight:700; color:rgba(255,255,255,0.8); display:flex; align-items:center; gap:5px; letter-spacing:0.04em; text-transform:uppercase; }
+.label-missions-bar { height:3px; width:36px; background:rgba(255,255,255,0.25); border-radius:10px; overflow:hidden; }
+.label-missions-fill { height:100%; background:rgba(255,255,255,0.85); border-radius:10px; }
+.label-lock-badge { position:absolute; top:-7px; right:-7px; width:20px; height:20px; border-radius:50%; background:rgba(0,0,0,0.55); border:1.5px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; font-size:10px; }
+.label-pin { width:2px; height:10px; background:linear-gradient(180deg,rgba(255,255,255,0.5),transparent); margin:0 auto; }
+.label-pin-dot { width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 8px rgba(255,255,255,0.9); margin:0 auto; }
 
 /* CONNECTOR LINE */
 .label-line {
@@ -259,13 +253,181 @@ canvas { display: block; width: 100vw; height: 100vh; }
 #error-msg h2 { font-size: 24px; color: #f87171; }
 #error-msg p { color: rgba(255,255,255,0.6); font-size: 14px; max-width: 400px; line-height: 1.6; }
 #error-msg code { background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 6px; font-size: 12px; }
+
+/* WELCOME SPLASH */
+#welcome {
+  position: fixed; inset: 0; z-index: 2000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #0a0e1a 0%, #0d1f3c 50%, #0a1628 100%);
+  overflow: hidden;
+}
+
+/* Animated background stars */
+#welcome::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(2px 2px at 10% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(2px 2px at 90% 40%, rgba(255,255,255,0.2) 0%, transparent 100%);
+  background-size: 400px 400px;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
+
+/* Glow orb behind logo */
+.welcome-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.welcome-content {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 0;
+  animation: welcomeFadeUp 1s ease 0.3s both;
+}
+
+@keyframes welcomeFadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Flag */
+.welcome-flag {
+  font-size: 52px; margin-bottom: 20px;
+  animation: flagWave 2s ease-in-out infinite;
+  display: block;
+  filter: drop-shadow(0 4px 24px rgba(59,130,246,0.5));
+}
+@keyframes flagWave {
+  0%, 100% { transform: rotate(-3deg) scale(1); }
+  50% { transform: rotate(3deg) scale(1.05); }
+}
+
+/* Logo */
+.welcome-logo {
+  font-family: 'Fredoka One', cursive;
+  font-size: 64px; color: #fff;
+  letter-spacing: -0.02em; line-height: 1;
+  text-shadow: 0 4px 40px rgba(59,130,246,0.5);
+  margin-bottom: 6px;
+}
+.welcome-logo span { color: #ffe066; }
+
+/* Tagline */
+.welcome-tagline {
+  font-size: 18px; font-weight: 600;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.04em;
+  margin-bottom: 48px;
+  text-align: center;
+  line-height: 1.5;
+}
+.welcome-tagline em {
+  color: rgba(255,255,255,0.9);
+  font-style: normal;
+  font-weight: 800;
+}
+
+/* Divider */
+.welcome-divider {
+  width: 60px; height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+  margin: 0 auto 48px;
+  border-radius: 10px;
+}
+
+/* Start button */
+.welcome-btn {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff; border: none;
+  padding: 18px 56px;
+  border-radius: 50px;
+  font-family: 'Fredoka One', cursive;
+  font-size: 20px; letter-spacing: 0.04em;
+  cursor: pointer;
+  box-shadow: 0 8px 40px rgba(59,130,246,0.45), 0 0 0 1px rgba(255,255,255,0.1) inset;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative; overflow: hidden;
+}
+.welcome-btn::before {
+  content: '';
+  position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s;
+}
+.welcome-btn:hover::before { left: 100%; }
+.welcome-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 50px rgba(59,130,246,0.55), 0 0 0 1px rgba(255,255,255,0.15) inset;
+}
+.welcome-btn:active { transform: translateY(-1px); }
+
+/* Sub text */
+.welcome-sub {
+  margin-top: 20px;
+  font-size: 12px; color: rgba(255,255,255,0.3);
+  font-weight: 600; letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Bottom city silhouette */
+.welcome-skyline {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 120px; z-index: 0;
+  background:
+    linear-gradient(180deg, transparent 0%, rgba(59,130,246,0.05) 100%);
+  overflow: hidden;
+}
+.welcome-skyline svg { width: 100%; height: 100%; }
+
 </style>
 </head>
 <body>
 
+<!-- WELCOME SPLASH -->
+<div id="welcome">
+  <div class="welcome-glow"></div>
+  <div class="welcome-skyline">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,120 L0,80 L40,80 L40,50 L60,50 L60,30 L80,30 L80,50 L100,50 L100,60 L120,60 L120,20 L140,20 L140,60 L160,60 L160,40 L180,40 L180,60 L200,60 L200,70 L240,70 L240,40 L260,40 L260,20 L280,20 L280,40 L300,40 L300,70 L340,70 L340,50 L360,50 L360,30 L380,30 L380,10 L400,10 L400,30 L420,30 L420,50 L440,50 L440,60 L480,60 L480,35 L500,35 L500,15 L520,15 L520,35 L540,35 L540,55 L560,55 L560,65 L600,65 L600,45 L620,45 L620,25 L640,25 L640,45 L660,45 L660,65 L700,65 L700,50 L720,50 L720,30 L740,30 L740,50 L760,50 L760,70 L800,70 L800,45 L820,45 L820,25 L840,25 L840,45 L860,45 L860,65 L900,65 L900,50 L920,50 L920,70 L960,70 L960,40 L980,40 L980,20 L1000,20 L1000,40 L1020,40 L1020,60 L1060,60 L1060,35 L1080,35 L1080,55 L1120,55 L1120,65 L1160,65 L1160,45 L1180,45 L1180,25 L1200,25 L1200,45 L1220,45 L1220,70 L1260,70 L1260,50 L1280,50 L1280,30 L1300,30 L1300,50 L1320,50 L1320,65 L1360,65 L1360,75 L1400,75 L1400,80 L1440,80 L1440,120 Z" fill="rgba(59,130,246,0.08)"/>
+      <path d="M0,120 L0,90 L50,90 L50,70 L70,70 L70,85 L100,85 L100,75 L130,75 L130,90 L170,90 L170,65 L190,65 L190,80 L230,80 L230,90 L270,90 L270,72 L290,72 L290,88 L330,88 L330,78 L370,78 L370,90 L420,90 L420,68 L440,68 L440,82 L480,82 L480,90 L530,90 L530,74 L550,74 L550,88 L590,88 L590,78 L630,78 L630,90 L680,90 L680,70 L700,70 L700,85 L740,85 L740,75 L780,75 L780,90 L830,90 L830,68 L850,68 L850,82 L890,82 L890,90 L940,90 L940,72 L960,72 L960,86 L1000,86 L1000,76 L1040,76 L1040,90 L1090,90 L1090,66 L1110,66 L1110,80 L1150,80 L1150,90 L1200,90 L1200,70 L1220,70 L1220,85 L1260,85 L1260,75 L1300,75 L1300,90 L1360,90 L1360,80 L1400,80 L1400,90 L1440,90 L1440,120 Z" fill="rgba(59,130,246,0.05)"/>
+    </svg>
+  </div>
+  <div class="welcome-content">
+    <span class="welcome-flag">🇺🇸</span>
+    <div class="welcome-logo">Ameri<span>Start</span></div>
+    <div class="welcome-divider"></div>
+    <div class="welcome-tagline">Your <em>ultimate guide</em> to life in America</div>
+    <button class="welcome-btn" onclick="startApp()">
+      Enter AmeriStart &nbsp;→
+    </button>
+    <div class="welcome-sub">English · Community · Career · Life</div>
+  </div>
+</div>
+
 <!-- LOADING -->
 <div id="loading">
-  <div class="loading-logo">Lingua<span>City</span></div>
+  <div class="loading-logo">Ameri<span>Start</span></div>
   <div class="loading-spinner"></div>
   <div class="loading-bar-wrap"><div class="loading-bar" id="loadBar"></div></div>
   <div class="loading-text" id="loadText">Loading city model...</div>
@@ -281,7 +443,7 @@ canvas { display: block; width: 100vw; height: 100vh; }
 <!-- TOP BAR -->
 <div class="topbar">
   <div class="logo">
-    Lingua<span>City</span>
+    Ameri<span>Start</span>
     <span class="logo-badge">BETA</span>
   </div>
   <div class="stats">
@@ -294,7 +456,7 @@ canvas { display: block; width: 100vw; height: 100vh; }
 <!-- PLAYER CARD -->
 <div class="player-card">
   <div class="player-avatar">👨</div>
-  <div class="player-name">Welcome back!</div>
+  <div class="player-name">Welcome back, Carlos!</div>
   <div class="player-level">Intermediate (B1)</div>
   <div class="xp-bar-wrap"><div class="xp-bar"></div></div>
   <div class="xp-text">340 / 500 XP to next level</div>
@@ -342,10 +504,11 @@ canvas { display: block; width: 100vw; height: 100vh; }
 
 <!-- THREE.JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 <script>
 // ─── CONFIG ──────────────────────────────────────────────────────────────────
 // Change this to wherever your files are hosted
-const BASE_URL = 'https://kevinandnazli.github.io/linguacity/';
+const BASE_URL = 'https://kevinandnazli.github.io/ameristart/';
 
 // District definitions — positions are in 3D world space (x, y, z)
 // These will be tuned once you see how the model loads
@@ -425,27 +588,11 @@ const skyMat = new THREE.ShaderMaterial({
 });
 scene.add(new THREE.Mesh(skyGeo, skyMat));
 
-// ─── GLTF LOADER (inline, no import needed) ──────────────────────────────────
-// We'll use a fetch + parse approach compatible with r128
+// ─── GLTF LOADER ─────────────────────────────────────────────────────────────
 function loadGLTF(url, onProgress, onLoad, onError) {
-  const manager = new THREE.LoadingManager();
-  manager.setURLModifier(url => url);
-
-  // Dynamically load GLTFLoader from CDN
-  const script = document.createElement('script');
-  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/examples/js/loaders/GLTFLoader.js';
-  script.onload = () => {
-    const loader = new THREE.GLTFLoader(manager);
-    loader.setPath(BASE_URL);
-    loader.load(
-      'scene.gltf',
-      onLoad,
-      onProgress,
-      onError
-    );
-  };
-  script.onerror = onError;
-  document.head.appendChild(script);
+  const loader = new THREE.GLTFLoader();
+  loader.setPath(BASE_URL);
+  loader.load('scene.gltf', onLoad, onProgress, onError);
 }
 
 // ─── LOAD MODEL ──────────────────────────────────────────────────────────────
@@ -491,7 +638,7 @@ loadGLTF(
 
     scene.add(model);
 
-    setLoadProgress(100, 'Welcome to LinguaCity!');
+    setLoadProgress(100, 'Welcome to AmeriStart!');
 
     setTimeout(() => {
       document.getElementById('loading').style.opacity = '0';
@@ -526,14 +673,22 @@ function initLabels() {
     el.className = 'district-label';
     el.id = 'label-' + key;
     el.innerHTML = `
-      <div class="label-inner" style="border-color:${d.unlocked ? d.color+'44' : 'rgba(255,255,255,0.08)'}">
-        <span class="label-icon">${d.icon}</span>
-        <div class="label-text">
-          <span class="label-name">${d.label}</span>
-          <span class="label-missions">${d.missions[0]}/${d.missions[1]} Missions ${d.unlocked ? '✓' : ''}</span>
+      <div class="label-inner">
+        <div class="label-card" style="--lc: ${d.color}dd">
+          <div class="label-icon-wrap">${d.icon}</div>
+          <div class="label-text-wrap">
+            <span class="label-name">${d.label}</span>
+            <div class="label-missions">
+              <span>${d.missions[0]}/${d.missions[1]}</span>
+              <div class="label-missions-bar">
+                <div class="label-missions-fill" style="width:${Math.round(d.missions[0]/d.missions[1]*100)}%"></div>
+              </div>
+            </div>
+          </div>
+          ${!d.unlocked ? '<div class="label-lock-badge">🔒</div>' : ''}
         </div>
-        <div class="label-dot ${d.unlocked ? 'dot-unlocked' : 'dot-locked'}"></div>
-        ${!d.unlocked ? '<span class="label-lock">🔒</span>' : ''}
+        <div class="label-pin"></div>
+        <div class="label-pin-dot"></div>
       </div>
     `;
     el.addEventListener('click', () => openModal(key));
@@ -746,6 +901,18 @@ window.addEventListener('resize', () => {
 });
 
 animate();
+
+// ─── WELCOME SCREEN ───────────────────────────────────────────────────────────
+function startApp() {
+  const welcome = document.getElementById('welcome');
+  welcome.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+  welcome.style.opacity = '0';
+  welcome.style.transform = 'scale(1.05)';
+  setTimeout(() => {
+    welcome.style.display = 'none';
+  }, 800);
+}
+
 </script>
 </body>
 </html>
