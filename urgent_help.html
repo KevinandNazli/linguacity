@@ -2300,12 +2300,21 @@ Be warm, clear, and practical. Both people are holding the same phone.`;
 }
 
 // ═══ SPEECH ═══════════════════════════════════════════════════════════════════
-function speakText(text) {
-  if (!('speechSynthesis' in window)) return;
-  const utt = new SpeechSynthesisUtterance(text);
-  utt.lang = 'en-US';
-  utt.rate = 0.85;
-  window.speechSynthesis.speak(utt);
+async function speakText(text, lang) {
+  if (!text) return;
+  var langCode = (lang || 'en').split('-')[0];
+  try {
+    var res = await fetch('https://puqtuupiepckkuzjdris.supabase.co/functions/v1/claude-proxy/tts', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({text: text.trim(), lang: langCode})
+    });
+    var ct = res.headers.get('Content-Type') || '';
+    if (ct.includes('audio')) {
+      var blob = await res.blob();
+      new Audio(URL.createObjectURL(blob)).play();
+    }
+  } catch(e) { console.error(e); }
 }
 
 // ═══ END SESSION ══════════════════════════════════════════════════════════════
