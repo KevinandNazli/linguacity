@@ -1778,11 +1778,14 @@ function addAIMessage(data) {
       </div>
     `;
   } else if (data.type === 'bilingual') {
-    const nativeSection = data.native ? `
-     <div class="bilingual-section">
-        <div class="bilingual-lang native">🌍 ${userLang ? userLang.name : 'Your Language'}</div>
-        <div class="bilingual-text">${data.native}</div>
-        <button onclick="speakText(this.previousElementSibling.textContent, '${userLang ? userLang.code : 'en'}')" style="margin-top:8px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;color:#34d399;cursor:pointer;">🔊 Play in ${userLang ? userLang.name : 'your language'}</button>
+    const nativeLangCode = userLang ? userLang.code : 'en';
+    const nativeLangName = userLang ? userLang.name : 'Your Language';
+    const nativeText = data.native || '';
+    const nativeSection = nativeText ? `
+      <div class="bilingual-section">
+        <div class="bilingual-lang native">🌍 ${nativeLangName}</div>
+        <div class="bilingual-text">${nativeText}</div>
+        <button onclick="speakText(decodeURIComponent('${encodeURIComponent(nativeText)}'), '${nativeLangCode}')" style="margin-top:8px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;color:#34d399;cursor:pointer;">🔊 Play in ${nativeLangName}</button>
       </div>
       <div class="bilingual-divider"></div>
     ` : '';
