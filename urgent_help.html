@@ -1779,9 +1779,10 @@ function addAIMessage(data) {
     `;
   } else if (data.type === 'bilingual') {
     const nativeSection = data.native ? `
-      <div class="bilingual-section">
+     <div class="bilingual-section">
         <div class="bilingual-lang native">🌍 ${userLang ? userLang.name : 'Your Language'}</div>
         <div class="bilingual-text">${data.native}</div>
+        <button onclick="speakText(this.previousElementSibling.textContent, '${userLang ? userLang.code : 'en'}')" style="margin-top:8px;background:rgba(52,211,153,0.15);border:1px solid rgba(52,211,153,0.3);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:700;color:#34d399;cursor:pointer;">🔊 Play in ${userLang ? userLang.name : 'your language'}</button>
       </div>
       <div class="bilingual-divider"></div>
     ` : '';
@@ -1790,7 +1791,7 @@ function addAIMessage(data) {
       <div class="say-this">
         <div class="say-this-label">💬 Say this in English</div>
         <div class="say-this-text">"${data.sayThis}"</div>
-        <div class="speak-btn" onclick="speakText('${data.sayThis.replace(/'/g, "\\'")}')">🔊 Hear pronunciation</div>
+       <div class="speak-btn" onclick="speakText('${data.sayThis.replace(/'/g, "\\'")}', 'en')">🔊 English</div>
       </div>
     ` : '';
 
