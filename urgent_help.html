@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<!-- saved from url=(0052)file:///C:/Users/kevin/Downloads/urgent_help_30.html -->
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AmeriStart — Urgent Help</title>
-<link href="./urgent_help_files/css2" rel="stylesheet">
-<link rel="manifest" href="file:///C:/Users/kevin/Downloads/manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -234,7 +233,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <body>
 
 <!-- LANGUAGE PICKER -->
-<div id="screen-lang" class="screen">
+<div id="screen-lang" class="screen active">
   <div class="lang-hero">
     <span class="lang-hero-flag">🌍</span>
     <h1>Ameri<span>Start</span></h1>
@@ -249,14 +248,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </div>
 
 <!-- HOME -->
-<div id="screen-home" class="screen active">
-  <div style="position:fixed;top:6px;right:8px;font-size:10px;color:rgba(255,255,255,0.18);font-family:monospace;z-index:1;">build 2026-06-20-d</div>
+<div id="screen-home" class="screen">
+  <div style="position:fixed;top:6px;right:8px;font-size:10px;color:rgba(255,255,255,0.18);font-family:monospace;z-index:1;">build 2026-06-20-e</div>
   <div class="home-header">
     <div class="home-greeting">Welcome to</div>
     <div class="home-logo">Ameri<span>Start</span></div>
     <div class="home-lang-badge" id="change-lang-btn">
-      <span id="home-lang-flag">🇮🇷</span>
-      <span id="home-lang-name">Persian</span>
+      <span id="home-lang-flag">🌍</span>
+      <span id="home-lang-name">Select language</span>
       <span>· Change</span>
     </div>
   </div>
@@ -264,7 +263,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
   <button id="sos-btn" style="width:100%;max-width:460px;background:linear-gradient(135deg,#dc2626,#991b1b);border:none;border-radius:20px;padding:20px;cursor:pointer;margin-bottom:14px;display:flex;align-items:center;gap:16px;animation:sosPulse 2s ease-in-out infinite;">
     <span style="font-size:36px;">🚨</span>
     <div style="text-align:left;">
-      <div style="font-family:&#39;Fredoka One&#39;,cursive;font-size:22px;color:#fff;">EMERGENCY — Call 911</div>
+      <div style="font-family:'Fredoka One',cursive;font-size:22px;color:#fff;">EMERGENCY — Call 911</div>
       <div style="font-size:13px;color:rgba(255,255,255,0.7);margin-top:2px;">One tap — speaks English for you instantly</div>
     </div>
   </button>
@@ -296,14 +295,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
     </div>
   </div>
   <div class="situation-grid">
-    <div class="sit-card" onclick="pickSituation(&#39;hospital&#39;,&#39;🏥&#39;,&#39;Hospital / Clinic&#39;,&#39;Medical emergency or appointment&#39;)"><span class="sit-icon">🏥</span><div class="sit-label">Hospital / Clinic</div><div class="sit-desc">Medical emergency or appointment</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;police&#39;,&#39;👮&#39;,&#39;Police / Authority&#39;,&#39;Stopped, questioned, or needing help&#39;)"><span class="sit-icon">👮</span><div class="sit-label">Police / Authority</div><div class="sit-desc">Stopped, questioned, or needing help</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;landlord&#39;,&#39;🏠&#39;,&#39;Landlord / Housing&#39;,&#39;Rent, repairs, or lease issues&#39;)"><span class="sit-icon">🏠</span><div class="sit-label">Landlord / Housing</div><div class="sit-desc">Rent, repairs, or lease issues</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;work&#39;,&#39;💼&#39;,&#39;Workplace&#39;,&#39;Boss, coworker, or HR issue&#39;)"><span class="sit-icon">💼</span><div class="sit-label">Workplace</div><div class="sit-desc">Boss, coworker, or HR issue</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;school&#39;,&#39;🏫&#39;,&#39;School&#39;,&#39;Teacher, principal, or office&#39;)"><span class="sit-icon">🏫</span><div class="sit-label">School</div><div class="sit-desc">Teacher, principal, or office</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;government&#39;,&#39;🏛️&#39;,&#39;Government / DMV&#39;,&#39;Forms, IDs, or official business&#39;)"><span class="sit-icon">🏛️</span><div class="sit-label">Government / DMV</div><div class="sit-desc">Forms, IDs, or official business</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;store&#39;,&#39;🛒&#39;,&#39;Store / Business&#39;,&#39;Shopping, returns, or complaints&#39;)"><span class="sit-icon">🛒</span><div class="sit-label">Store / Business</div><div class="sit-desc">Shopping, returns, or complaints</div></div>
-    <div class="sit-card" onclick="pickSituation(&#39;other&#39;,&#39;🆘&#39;,&#39;Other Emergency&#39;,&#39;Any other urgent situation&#39;)"><span class="sit-icon">🆘</span><div class="sit-label">Other Emergency</div><div class="sit-desc">Any other urgent situation</div></div>
+    <div class="sit-card" onclick="pickSituation('hospital','🏥','Hospital / Clinic','Medical emergency or appointment')"><span class="sit-icon">🏥</span><div class="sit-label">Hospital / Clinic</div><div class="sit-desc">Medical emergency or appointment</div></div>
+    <div class="sit-card" onclick="pickSituation('police','👮','Police / Authority','Stopped, questioned, or needing help')"><span class="sit-icon">👮</span><div class="sit-label">Police / Authority</div><div class="sit-desc">Stopped, questioned, or needing help</div></div>
+    <div class="sit-card" onclick="pickSituation('landlord','🏠','Landlord / Housing','Rent, repairs, or lease issues')"><span class="sit-icon">🏠</span><div class="sit-label">Landlord / Housing</div><div class="sit-desc">Rent, repairs, or lease issues</div></div>
+    <div class="sit-card" onclick="pickSituation('work','💼','Workplace','Boss, coworker, or HR issue')"><span class="sit-icon">💼</span><div class="sit-label">Workplace</div><div class="sit-desc">Boss, coworker, or HR issue</div></div>
+    <div class="sit-card" onclick="pickSituation('school','🏫','School','Teacher, principal, or office')"><span class="sit-icon">🏫</span><div class="sit-label">School</div><div class="sit-desc">Teacher, principal, or office</div></div>
+    <div class="sit-card" onclick="pickSituation('government','🏛️','Government / DMV','Forms, IDs, or official business')"><span class="sit-icon">🏛️</span><div class="sit-label">Government / DMV</div><div class="sit-desc">Forms, IDs, or official business</div></div>
+    <div class="sit-card" onclick="pickSituation('store','🛒','Store / Business','Shopping, returns, or complaints')"><span class="sit-icon">🛒</span><div class="sit-label">Store / Business</div><div class="sit-desc">Shopping, returns, or complaints</div></div>
+    <div class="sit-card" onclick="pickSituation('other','🆘','Other Emergency','Any other urgent situation')"><span class="sit-icon">🆘</span><div class="sit-label">Other Emergency</div><div class="sit-desc">Any other urgent situation</div></div>
   </div>
 </div>
 
@@ -377,16 +376,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <!-- SOS MODAL -->
 <div style="position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.95);display:none;flex-direction:column;align-items:center;justify-content:center;padding:32px;" id="sos-screen">
   <div style="font-size:72px;margin-bottom:20px;">🚨</div>
-  <div style="font-family:&#39;Fredoka One&#39;,cursive;font-size:28px;color:#fff;text-align:center;margin-bottom:12px;">Emergency Help</div>
+  <div style="font-family:'Fredoka One',cursive;font-size:28px;color:#fff;text-align:center;margin-bottom:12px;">Emergency Help</div>
   <div style="background:rgba(220,38,38,0.2);border:2px solid #dc2626;border-radius:16px;padding:20px;margin-bottom:24px;width:100%;max-width:400px;text-align:center;">
     <div style="font-size:12px;font-weight:700;color:#fca5a5;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;">Say this in English</div>
     <div style="font-size:18px;font-weight:700;color:#fff;line-height:1.6;" id="sos-phrase">"I need emergency help. I do not speak English. Please call 911."</div>
-    <button id="sos-play-btn" style="margin-top:14px;background:#dc2626;border:none;border-radius:50px;padding:10px 24px;font-family:&#39;Fredoka One&#39;,cursive;font-size:16px;color:#fff;cursor:pointer;">🔊 Play in English</button>
+    <button id="sos-play-btn" style="margin-top:14px;background:#dc2626;border:none;border-radius:50px;padding:10px 24px;font-family:'Fredoka One',cursive;font-size:16px;color:#fff;cursor:pointer;">🔊 Play in English</button>
   </div>
   <div style="width:100%;max-width:400px;margin-bottom:16px;" id="sos-native-box">
     <div style="font-size:13px;color:rgba(255,255,255,0.5);text-align:center;margin-bottom:8px;" id="sos-native-text"></div>
   </div>
-  <button id="sos-close-btn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:12px 32px;font-family:&#39;Fredoka One&#39;,cursive;font-size:16px;color:#fff;cursor:pointer;">Close</button>
+  <button id="sos-close-btn" style="background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:50px;padding:12px 32px;font-family:'Fredoka One',cursive;font-size:16px;color:#fff;cursor:pointer;">Close</button>
 </div>
 
 <!-- RIGHTS MODAL -->
@@ -838,12 +837,19 @@ async function speakEL(text, lang) {
 }
 
 // ── CLAUDE API ────────────────────────────────────────────────────────────────
-async function callClaude(userText, twoWay) {
+async function callClaude(userText, twoWay, scriptHint) {
   var langName = userLang ? userLang.name : 'English';
   var situation = currentSituation ? currentSituation.label : 'general situation';
 
+  var scriptHintLine = '';
+  if (twoWay && scriptHint === 'english') {
+    scriptHintLine = '\nIMPORTANT: The text is written using Latin/English letters, which means it is almost certainly English (' + langName + ' uses a different script). Trust this over any other assumption - set detected_lang to "English" unless the words are unmistakably ' + langName + ' written phonetically.';
+  } else if (twoWay && scriptHint === 'native') {
+    scriptHintLine = '\nNote: The text is written in ' + langName + ' script, consistent with detected_lang "' + langName + '".';
+  }
+
   var systemPrompt = twoWay
-    ? 'You are a real-time bilingual interpreter for AmeriStart.\nSituation: ' + situation + '\nThe same shared phone is being used by two people: one speaks ' + langName + ', the other speaks English. The text you receive could be in EITHER language on any given turn - do not assume it is always ' + langName + '.\nFirst, carefully determine which language the input text is actually written in. If it is clearly English words and grammar, set detected_lang to "English". If it is clearly ' + langName + ', set detected_lang to "' + langName + '".\nThen translate it into the OTHER language only.\nAlso suggest 2-3 short natural follow-up phrases relevant to the situation, each with BOTH the English version and the ' + langName + ' translation so the ' + langName + ' speaker can understand what they would be saying.\nRespond with valid JSON only:\n{"type":"bilingual","detected_lang":"English or ' + langName + '","native":"Translation in ' + langName + ' (only if English was spoken)","english":"Translation in English (only if ' + langName + ' was spoken)","sayThis":"The exact phrase to say in the other language","suggestions":[{"en":"short phrase 1","native":"translation in ' + langName + '"},{"en":"short phrase 2","native":"translation in ' + langName + '"}]}'
+    ? 'You are a real-time bilingual interpreter for AmeriStart.\nSituation: ' + situation + '\nThe same shared phone is being used by two people: one speaks ' + langName + ', the other speaks English. The text you receive could be in EITHER language on any given turn - do not assume it is always ' + langName + '.\nFirst, carefully determine which language the input text is actually written in. If it is clearly English words and grammar, set detected_lang to "English". If it is clearly ' + langName + ', set detected_lang to "' + langName + '".' + scriptHintLine + '\nThen translate it into the OTHER language only.\nAlso suggest 2-3 short natural follow-up phrases relevant to the situation, each with BOTH the English version and the ' + langName + ' translation so the ' + langName + ' speaker can understand what they would be saying.\nRespond with valid JSON only:\n{"type":"bilingual","detected_lang":"English or ' + langName + '","native":"Translation in ' + langName + ' (only if English was spoken)","english":"Translation in English (only if ' + langName + ' was spoken)","sayThis":"The exact phrase to say in the other language","suggestions":[{"en":"short phrase 1","native":"translation in ' + langName + '"},{"en":"short phrase 2","native":"translation in ' + langName + '"}]}'
     : 'You are AmeriStart urgent help AI. User native language: ' + langName + '. Situation: ' + situation + '.\nAlso suggest 2-3 short natural English follow-up phrases the user might want to say next, each with BOTH the English version and the ' + langName + ' translation so the user can understand what they would be saying before tapping it.\nRespond with valid JSON only:\n{"type":"bilingual","native":"Full response in ' + langName + '","english":"English translation and context","sayThis":"REQUIRED: exact English phrase to say right now","suggestions":[{"en":"short phrase 1","native":"translation in ' + langName + '"},{"en":"short phrase 2","native":"translation in ' + langName + '"}]}';
 
   var msgs = twoWay
@@ -920,6 +926,26 @@ document.getElementById('call-field').onkeydown = function(e) {
 };
 
 // ── CALL TURN (unified — used by both mic and typed input) ───────────────────
+// Detect the actual script of the text (Persian/Arabic characters vs Latin letters).
+// This is a much more reliable signal than asking the AI to guess from short or
+// noisy transcribed text, and catches cases where Whisper mis-transcribes English
+// speech as garbled Persian-looking text (or vice versa).
+function detectScriptLang(text, nativeCode) {
+  if (!text) return null;
+  var persianArabicChars = (text.match(/[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF\uFB50-\uFDFF\uFE70-\uFEFF]/g) || []).length;
+  var latinChars = (text.match(/[a-zA-Z]/g) || []).length;
+  var totalLetters = persianArabicChars + latinChars;
+  if (totalLetters === 0) return null; // can't tell, let the AI decide
+
+  // Arabic-script languages (Persian, Arabic, Urdu, etc all share this block)
+  var arabicScriptCodes = ['fa', 'ar', 'ur'];
+  if (persianArabicChars > latinChars) {
+    return arabicScriptCodes.includes(nativeCode) ? 'native' : 'unclear';
+  } else {
+    return 'english';
+  }
+}
+
 function runCallTurn(text) {
   addUserMessage(text, '👤 You said');
   chatHistory.push({ role: 'user', content: text });
@@ -928,7 +954,10 @@ function runCallTurn(text) {
   var micBtn = document.getElementById('call-mic-btn');
   if (micBtn) micBtn.classList.add('thinking-state');
 
-  callClaude(text, true).then(function(response) {
+  var nativeCode = userLang ? userLang.code : '';
+  var scriptHint = detectScriptLang(text, nativeCode);
+
+  callClaude(text, true, scriptHint).then(function(response) {
     removeThinking();
     addAIMessage(response);
     chatHistory.push({ role: 'assistant', content: JSON.stringify(response) });
@@ -1320,6 +1349,5 @@ window.addEventListener('beforeinstallprompt', function(e) {
   }, 30000);
 });
 </script>
-
 
 </body></html>
